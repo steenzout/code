@@ -1,7 +1,8 @@
 # Magical Web Servers
 
 ## Date(s) of talk
-May 11, 2017
+
+[May 11, 2017][meetup]
 
 
 ## Synopsis
