@@ -1,8 +1,13 @@
-import random
-from PIL import Image, ImageDraw, ImageFont
-import requests
+# -*- coding: utf-8 -*-
+
 import sys
 import os
+
+import random
+import requests
+
+
+from PIL import Image, ImageDraw, ImageFont
 from urllib.parse import urlparse
 
 
@@ -49,7 +54,7 @@ class LastFMImage:
             try:
                 content = requests.get(url).content
                 f.write(content)
-            except:
+            except BaseException:
                 image = Image.new('RGB', (500, 500))
                 image.save(path)
         return path
@@ -57,9 +62,9 @@ class LastFMImage:
     def _get_image_from_cache(self, url):
         url_parts = urlparse(url)
         cache_name = str(url_parts.path).replace('/', '')
-        if os.path.isfile(self.cache_path+'/'+cache_name):
-            return self.cache_path+'/'+cache_name
-        path = self._download_file(url, self.cache_path+'/'+cache_name)
+        if os.path.isfile(self.cache_path + '/' + cache_name):
+            return self.cache_path + '/' + cache_name
+        path = self._download_file(url, self.cache_path + '/' + cache_name)
         return path
 
     def _get_images(self, artists):
@@ -76,11 +81,11 @@ class LastFMImage:
 
     def _insert_name(self, image, name, cursor):
         draw = ImageDraw.Draw(image, 'RGBA')
-        font = ImageFont.truetype(self.cache_path+'/myfont.ttf', size=17)
+        font = ImageFont.truetype(self.cache_path + '/myfont.ttf', size=17)
         x = cursor[0]
         y = cursor[1]
-        draw.rectangle([(x, y+200), (x+300, y+240)], (0, 0, 0, 123))
-        draw.text((x+8, y+210), name, (255, 255, 255), font=font)
+        draw.rectangle([(x, y + 200), (x + 300, y + 240)], (0, 0, 0, 123))
+        draw.text((x + 8, y + 210), name, (255, 255, 255), font=font)
 
     def _create_collage(self, cols=3, rows=3):
         artists = self.get_artists()
@@ -105,7 +110,7 @@ class LastFMImage:
                 x = 0
             cursor = (x, y)
 
-        final_path = self.cache_path+'/lastfm-final.jpg'
+        final_path = self.cache_path + '/lastfm-final.jpg'
         final_image.save(final_path)
         self.path = final_path
         # final_image.show()

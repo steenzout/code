@@ -1,7 +1,12 @@
+# -*- coding: utf-8 -*-
+
 from flask import Flask
 from flask import request
 from flask import send_file
-from B002_Magical_Web_Servers import lastcol
+
+import lastcol
+
+
 app = Flask(__name__)
 
 
@@ -25,4 +30,5 @@ def last_fm(username):
         return str(e)  # 'Error with lastfm'
 
 
-app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=True)
