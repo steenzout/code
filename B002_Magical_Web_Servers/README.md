@@ -33,6 +33,9 @@ $ tox
 # a new directory .tox/B002/ will be created
 ```
 
+If you use [PyCharm][pycharm] be sure
+to point this project's Python interpreter to `${PWD}/.tox/B002/bin/python`.
+
 After that you should source the project [virtualenv][virtualenv]:
 
 ```
@@ -50,6 +53,7 @@ $ python mag-web-srv.py
 
 
 [meetup]:   https://www.meetup.com/PythonAtThePoint/events/239300523/   "Beginners: Magical Web Services!"
+[pycharm]:  https://www.jetbrains.com/pycharm/  "PyCharm"
 [python3]:   https://www.python.org/downloads/  "Python"
 [tox]:  http://tox.readthedocs.io/en/latest/    "tox"
 [virtualenv]:   https://virtualenv.pypa.io/en/stable/   "virtualenv"
