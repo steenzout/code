@@ -1,0 +1,7 @@
+include README.md
+include requirements.txt
+include requirements-test.txt
+include tox.ini
+
+recursive-exclude . *.pyc
+recursive-exclude . *.pyo
