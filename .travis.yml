@@ -1,0 +1,47 @@
+language: python
+
+branches:
+  except:
+    - gh-pages
+
+cache:
+  directories:
+    - "${HOME}/.pip"
+
+before_cache:
+  - "find ${HOME}/.pip -name log -o -name __pycache__ -type d | xargs -I {} rm -rf {}"
+
+python:
+  - 3.6
+
+matrix:
+  fast_finish: true
+  include:
+    - python: 3.6
+      env: DIR_EXERCISE=B002_Magical_Web_Servers
+
+install:
+  - pip install tox
+
+script:
+  - cd ${DIR_EXERCISE}
+  - tox
+
+after_success:
+  - pylint .
+  - pip install coveralls
+  - coveralls
+
+notifications:
+  email: false
+  slack:
+    template:
+      - "%{repository_name}@%{branch} %{commit} : [%{build_number}] %{result} "
+      - "%{build_url}"
+      - "'%{commit_subject}' by %{author}"
+      - "%{elapsed_time} : %{duration}"
+      - "%{message}"
+    rooms:
+      secure: ${SLACK_ENCRYPTED_SECRET}
+    on_success: always
+    on_failure: always
