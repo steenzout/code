@@ -9,7 +9,7 @@ from setuptools import find_packages, setup
 
 
 def requirements(requirements_file):
-    """Return primogen mentioned in the given file.
+    """Return packages mentioned in the given file.
 
     Args:
         requirements_file (str): path to the requirements file to be parsed.
