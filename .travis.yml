@@ -11,9 +11,6 @@ cache:
 before_cache:
   - "find ${HOME}/.pip -name log -o -name __pycache__ -type d | xargs -I {} rm -rf {}"
 
-python:
-  - 3.6
-
 matrix:
   fast_finish: true
   include:
